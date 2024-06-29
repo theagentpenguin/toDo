@@ -8,13 +8,13 @@ function App() {
   const [todos, setTodos] = useState([]);
   function handleSubmit(e){
     e.preventDefault()
-    setTodos(currentTodos => {
+    setTodos(todos => {
       return [
-        ...todos, {title: newData}
+        ...todos, {title: newData, completed: false}
       ]
     });
   }
-  console.log(todos);
+  
   return (
     <>
     <form onSubmit={handleSubmit}>
@@ -27,8 +27,19 @@ function App() {
         <button className="btn">Add</button>
       </div>
       
+      
     </div>
     </form>
+    {todos.map(todo => {
+      return(
+        <li>
+          <input type='checkbox' checked={todo.completed}/>
+          {todo.title}
+          <button>delete</button>
+        </li>
+      )
+    }
+    )}
     </>
   );
 }
